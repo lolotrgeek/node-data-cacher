@@ -1,0 +1,15 @@
+{
+  "name": "node-data-cacher",
+  "version": "0.0.1",
+  "description": "Cache data in local json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lolotrgeek",
+  "license": "MIT",
+  "dependencies": {
+    "keyv": "^4.1.0",
+    "keyv-file": "^0.2.0"
+  }
+}
