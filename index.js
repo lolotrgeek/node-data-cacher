@@ -21,12 +21,10 @@ function Find(finder, type, timeout) {
             console.log(`Found cached data for ${type}`, data)
             resolve(data)
         } catch (error) {
-            finder(ata => {
-                console.log(`Finding data for ${type}`)
-                await keyv.set(`${type}`, data, timeout)
-                resolve(data)
-            })
-
+            let data = await finder()
+            console.log(`Finding data for ${type}`)
+            await keyv.set(`${type}`, data, timeout)
+            resolve(data)
         }
     })
 }
