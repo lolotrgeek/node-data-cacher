@@ -5,10 +5,10 @@ const { KeyvFile } = require('keyv-file')
  * Retrieves Data
  * @param {function} finder
  * @param {string} type 
- * @param {Date} timeout
+ * @param {int} timeout ms to timeout
  * @returns 
  */
-function Find(finder, type, timeout) {
+function Cache(finder, type, timeout) {
     if (typeof finder !== 'function') return null
 
     if (typeof type !== 'string') return null
@@ -23,10 +23,11 @@ function Find(finder, type, timeout) {
         } catch (error) {
             let data = await finder()
             console.log(`Finding data for ${type}`)
-            await keyv.set(`${type}`, data, timeout)
+            if (timeout) await keyv.set(`${type}`, data, timeout)
+            else await keyv.set(`${type}`, data)
             resolve(data)
         }
     })
 }
 
-module.exports = { Find }
+module.exports = { Cache }
